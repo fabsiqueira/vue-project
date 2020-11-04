@@ -1,21 +1,33 @@
 <template>
-<div id="app">
-  <p>Novo curso:
-    <input type="text" v-model="novo">
-    <button @click="incluir">Inserir</button>
+  <div id="app">
+    <p>
+      Novo curso:
+      <input type="text" v-model="novo" />
+      <button @click="incluir">Inserir</button>
     </p>
     <ul>
-      <li v-for="(curso, indice) in cursos" @click="excluir(indice)" :key="indice">
-        {{curso.nome}}
-        </li>
+      <app-curso-item
+        v-for="(curso, indice) in cursos"
+        @click="excluir(indice)"
+        :key="indice" :value = "curso.nome"
+      >
+       ({{indice}} - {{ curso.nome }})
+      </app-curso-item>
+      <component :is="componente" value="Fixo">( 9999 )</component>
     </ul>
   </div>
 </template>
 <script>
+import CursoItem from './components/CursoItem';
+
 export default {
-  name: "app",
+  name: 'app',
+  components: {
+    'app-curso-item': CursoItem
+  },
   data() {
     return {
+      componente : 'app-curso-item',
       novo: "",
       cursos: [{ nome: "ADS" }, { nome: "Banco de Dados" }],
     };
