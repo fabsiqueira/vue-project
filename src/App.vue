@@ -1,6 +1,12 @@
 <template>
   <div id="app">
     <div id="nav">
+      <p>
+        <label for="inputNav"> Permite navegação? </label>
+        <input id="inputNav" type="checkbox"
+          :checked="$store.state.permiteNavegacao"
+          @click="$store.commit('alteraPermiteNavegacao')"/>
+      </p>
       <router-link to="/">Home</router-link> |
       <router-link :to="'/ola/' + nome">Olá</router-link> |
       <router-link to="/about">About</router-link> 
@@ -11,7 +17,9 @@
   </div>
 </template>
 <script>
+import Input from './components/Input.vue'
 export default {
+  components: { Input },
     name: 'app',
     data(){
       return {
