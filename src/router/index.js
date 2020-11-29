@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -9,6 +10,12 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home
+  },
+  {
+    path: '/ola/:nome',
+    name: 'ola',
+    component : () => import('../views/Alo.vue'),
+    props: true
   },
   {
     path: '/about',
